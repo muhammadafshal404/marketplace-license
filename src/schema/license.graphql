@@ -1,0 +1,31 @@
+input licenseInput {
+	productId: String!
+	price: Float!
+	description: String!
+}
+type creationOutput{
+	success: Boolean
+	message: String
+	status: Int
+}
+
+type license {
+	_id: String
+	productId: String
+	description: String
+	price: Float
+}
+
+type licenses {
+	licenses: [license]
+	response: creationOutput
+}
+
+extend type Mutation {
+	createLicense(input: licenseInput): creationOutput
+	deleteLicense(licenseId: String!): creationOutput
+}
+
+extend type Query {
+	getProductLicenses(productId: String!): licenses
+}
